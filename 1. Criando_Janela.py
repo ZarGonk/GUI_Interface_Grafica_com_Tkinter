@@ -1,5 +1,5 @@
 import tkinter as tk
 
-root = tk.Tk() # Cria a Janela
+root = tk.Tk() # Create Window
 
-root.mainloop() # Mantem a janela aberta
+root.mainloop() # keep the windiw open

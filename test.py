@@ -1,17 +1,22 @@
 import tkinter as tk
 
-def abrir_janela():
-    root2 = tk.Tk()
-    root2.mainloop()
-
 root = tk.Tk()
-root.geometry('300x200')
-root.title('Hello, World!')
+root.title('Janela')
 
-message = tk.Label(root, text='Hello World')
-message.pack()
+root.geometry('300x200+50+50')
+# root.resizable(False, True)
 
-button = tk.Button(root, text='Click', command=abrir_janela)
-button.pack()
+# Define tamanho minimo da janela
+root.minsize(300, 200)
+# Define tamanho maximo da janela
+root.maxsize(600, 400)
+
+# Defini nivel de transparencia
+root.attributes('-alpha', 1)
+
+# Alteração de icon da janela
+
+root.iconbitmap('assets/pythontutorial-1-150x150.ico')
+
 
 root.mainloop()

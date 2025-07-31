@@ -2,7 +2,8 @@ import tkinter as tk
 
 # Main Window
 root = tk.Tk()
-root.geometry('300x200') # Define um tamanho para a tela 
+root.geometry('300x200') # Sets a size for the screen
+
 root.title('Mostrando Imagem')
 
 # Create Label Text
