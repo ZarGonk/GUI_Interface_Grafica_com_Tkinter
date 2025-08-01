@@ -16,4 +16,13 @@ root.maxsize(1050, 600)
 # Sets the transparency of the window: 0.0 (fully transparent) to 1.0 (fully opaque)
 root.attributes('-alpha', 1.0)
 
+# Sets the screen to open at maximum size
+"root.state('zoomed')"
+
+# Charge the window icon
+root.iconbitmap('assets/pythontutorial-1-150x150.ico')
+
+# Sets background the window
+root.config(background='lightblue')
+
 root.mainloop()
