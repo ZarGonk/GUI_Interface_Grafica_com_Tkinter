@@ -7,7 +7,6 @@ root.title('Customizando Label de texto')
 root.geometry('300x200')
 
 # Create Label Text
-
 message = ttk.Label(
     root,
     text='I am ZarGonk',
@@ -15,10 +14,8 @@ message = ttk.Label(
     foreground= 'Red',
     background= 'lightgray',
     anchor='center',
-    borderwidth=5,
+    borderwidth=2,
     relief='groove'
 ).pack()
-
-
 
 root.mainloop()
