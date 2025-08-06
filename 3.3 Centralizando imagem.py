@@ -12,8 +12,6 @@ def centralizar_imagem(event):
 
     lbl_photo.place(x=posicao_x, y=posicao_y)
 
-
-
 # main window
 root = tk.Tk()
 root.geometry('300x200')
