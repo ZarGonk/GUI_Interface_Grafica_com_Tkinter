@@ -1,21 +1,22 @@
 import tkinter as tk
 from tkinter import ttk
 
-# Main Window
+# Create the main application window
 root = tk.Tk()
-root.title('Customizando Label de texto')
+root.title('Customizing Text Label')
 root.geometry('300x200')
 
-# Creating Text Label and Customizing
+# Create a Label widget with custom styling
 message = ttk.Label(
     root,
-    text='I am ZarGonk',
-    font=('Times New Roman', 15),    
-    foreground= 'Red',
-    background= 'lightgray',
-    anchor='center',
-    borderwidth=2,
-    relief='groove'
+    text='I am ZarGonk',                 # Text to display
+    font=('Times New Roman', 15),        # Font family and size
+    foreground='red',                    # Text color
+    background='lightgray',              # Background color
+    anchor='center',                     # Align text inside the widget
+    borderwidth=2,                       # Thickness of the border
+    relief='groove'                      # Border style (groove, ridge, sunken, raised, solid, flat)
 ).pack()
 
+# Start the Tkinter event loop (keeps the window open)
 root.mainloop()
