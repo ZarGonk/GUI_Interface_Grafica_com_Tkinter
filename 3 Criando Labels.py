@@ -1,28 +1,30 @@
 import tkinter as tk
 
-# Main Window
+# Create the main application window
 root = tk.Tk()
-root.geometry('300x200') # Sets a size for the screen
+root.geometry('300x200')  # Set the window size
+root.title('Displaying Image')
 
-root.title('Mostrando Imagem')
-
-# Create Label Text
+# Create a Label with text
 message = tk.Label(
     root,
-    text='Image below',
-    font= ('Times New Roman', 14),
-    fg='red'
+    text='Image below',                 # Text to be displayed
+    font=('Times New Roman', 14),       # Font family and size
+    fg='red'                            # Text color
 )
 message.pack()
 
-# Create Label Photo
+# Load an image (must be a .png, .gif, or .ppm for PhotoImage)
 photo = tk.PhotoImage(file='assets/python.png')
+
+# Create a Label with both text and image
 image_label = tk.Label(
-    root, 
-    image=photo,
-    text='Python',
-    compound=tk.TOP
+    root,
+    image=photo,                        # Image to display
+    text='Python',                      # Text displayed together with the image
+    compound=tk.TOP                     # Places text above the image
 )
 image_label.pack()
 
+# Start the Tkinter event loop (keeps the window open)
 root.mainloop()
