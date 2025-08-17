@@ -1,10 +1,13 @@
 import tkinter as tk
 from tkinter import ttk
 
+def centralizar_imagem(event):
+    pass
+
+
+# main window
 root = tk.Tk()
 root.geometry('300x200')
-
-tk.Label(root, text='Classic Label').pack()
-ttk.Label(root, text='Themed Label').pack()
+root.title('Centralizando Imagem')
 
 root.mainloop()
