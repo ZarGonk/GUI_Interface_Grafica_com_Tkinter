@@ -6,7 +6,7 @@ root = tk.Tk()
 root.title('Customizando Label de texto')
 root.geometry('300x200')
 
-# Create Label Text
+# Creating Text Label and Customizing
 message = ttk.Label(
     root,
     text='I am ZarGonk',

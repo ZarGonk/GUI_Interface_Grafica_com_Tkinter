@@ -17,5 +17,5 @@ center_y = int(screen_heigth/2 - window_height/2)
 # set the position of the window to the center of the screen
 root.geometry(f'{window_width}x{window_height}+{center_x}+{center_y}')
 
-
+# keep the windiw open
 root.mainloop()

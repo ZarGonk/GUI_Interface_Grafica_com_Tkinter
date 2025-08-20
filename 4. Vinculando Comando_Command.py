@@ -8,9 +8,11 @@ from tkinter import ttk
 root = tk.Tk()
 root.title('Command/ Event')
 
+# Function using the button
 def button_click():
     print('Button Clicked')
 
+# Create a Button
 button = ttk.Button(root, text='Click Me',command= button_click).pack()
 
 root.mainloop()

@@ -2,8 +2,8 @@ import tkinter as tk
 
 # Main Window
 root = tk.Tk()
-root.title('Compostamento da janela')
-root.geometry('400x200+600+300')
+root.title('Compostamento da janela') # Window title
+root.geometry('400x200+600+300') # Window Size
 
 # Sets whethet the window can be resized or not
 root.resizable(True, True)
@@ -25,4 +25,5 @@ root.iconbitmap('assets/pythontutorial-1-150x150.ico')
 # Sets background the window
 root.config(background='lightblue')
 
+# keep the windiw open
 root.mainloop()
