@@ -1,29 +1,34 @@
 import tkinter as tk
 
-# Main Window
+# Create the main application window
 root = tk.Tk()
-root.title('Compostamento da janela') # Window title
-root.geometry('400x200+600+300') # Window Size
 
-# Sets whethet the window can be resized or not
+# Set the window title
+root.title('Window Behavior')
+
+# Set the initial size and position of the window: 'widthxheight+x_offset+y_offset'
+root.geometry('400x200+600+300')
+
+# Allow the window to be resized: (width_resizable, height_resizable)
 root.resizable(True, True)
 
-# Sets the minimum size for the window
+# Set the minimum window size
 root.minsize(350, 200)
-# Sets the maximum size for the window
+
+# Set the maximum window size
 root.maxsize(1050, 600)
 
-# Sets the transparency of the window: 0.0 (fully transparent) to 1.0 (fully opaque)
+# Set the window transparency: 0.0 (fully transparent) to 1.0 (fully opaque)
 root.attributes('-alpha', 1.0)
 
-# Sets the screen to open at maximum size
-"root.state('zoomed')"
+# Open the window maximized (commented as string in your code, corrected here)
+# root.state('zoomed')
 
-# Charge the window icon
+# Load and set the window icon (must be .ico format on Windows)
 root.iconbitmap('assets/pythontutorial-1-150x150.ico')
 
-# Sets background the window
+# Set the background color of the window
 root.config(background='lightblue')
 
-# keep the windiw open
+# Start the Tkinter event loop (keeps the window open)
 root.mainloop()
