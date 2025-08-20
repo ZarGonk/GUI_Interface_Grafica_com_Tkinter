@@ -1,5 +1,7 @@
-import tkinter as tk
+import tkinter as tk   # Import the tkinter library and give it the alias 'tk'
 
-root = tk.Tk() # Create Window
+# Create the main application window
+root = tk.Tk()
 
-root.mainloop() # keep the windiw open
+# Start the Tkinter event loop (keeps the window open and responsive)
+root.mainloop()
