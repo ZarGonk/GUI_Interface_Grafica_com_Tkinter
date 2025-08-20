@@ -1,16 +1,23 @@
 import tkinter as tk
 
-root = tk.Tk() # Create Window
+# Create the main application window
+root = tk.Tk()
 
-root.geometry('300x200') # Sets a size for the screen
+# Set the window size
+root.geometry('300x200')
 
-root.title('Mostrando Mensagem') # Give the app a title
+# Set the window title
+root.title('Displaying Message')
 
-# Create Widget (Text)
+# Create a Label widget (text element)
 message = tk.Label(
-    root, 
-    text='Hello, World!', # Message to be displayed
-    font = ('times new roman', 15)) # Font type and font size
-message.pack() # Adds the Label to the window
+    root,
+    text='Hello, World!',          # Text to be displayed
+    font=('Times New Roman', 15)   # Font family and size
+)
 
-root.mainloop() # Keep the window open
+# Add the Label to the window
+message.pack()
+
+# Start the Tkinter event loop (keeps the window open)
+root.mainloop()
