@@ -1,14 +1,17 @@
 import tkinter as tk
 from tkinter import ttk
 
-# Main Window
+# Create the main application window
 root = tk.Tk()
-root.title('Enter Dados')
+root.title('Enter Data')
 
-# Label text
-text = ttk.Label(root,text='Entry:').pack()
+# Create a Label widget
+label = ttk.Label(root, text='Entry:')  # Text displayed next to the entry field
+label.pack()
 
-# create widget constructor:Entry
-entry = ttk.Entry(root).pack()
+# Create an Entry widget (input field)
+entry = ttk.Entry(root)  # Field where the user can type text
+entry.pack()
 
+# Start the Tkinter event loop (keeps the window open)
 root.mainloop()
