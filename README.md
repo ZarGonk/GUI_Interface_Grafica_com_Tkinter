@@ -1,4 +1,4 @@
-# Interface gráfica com Tkinter
+# Interface gráfica com Tkinter PT.1
 
 This project was developed as part of my studies in GUI with Tkinter in Python. 
 I am sharing it in the hope that it may be useful. 
