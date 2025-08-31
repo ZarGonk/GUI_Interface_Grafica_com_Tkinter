@@ -9,12 +9,17 @@ def temperature():
         fahrenheit= (celsius * 1.8) + 32
         kelvin= celsius + 273.15
 
-        text['text'] = f'{celsius}°C em {fahrenheit:.2f}°F\n{celsius}°C em {kelvin}K'
+        text.config(text = f'{celsius}°C em {fahrenheit:.2f}°F\n{celsius}°C em {kelvin:.2f}K',
+                    font=('Arial', 12, 'bold'),
+                    fg='Green',
+                    bg='Lightblue')
+
     except ValueError:
-        text['text'] = f'Erro!'
-        text['font'] = ('Arial', 16, 'bold')
-        text['foreground'] = 'Red'
-        text['background'] = 'lightblue'
+        text.config(
+        text = f'Erro! Insira um número válido',
+        font = ('Arial', 12, 'bold'),
+        fg = 'Red',
+        bg = 'lightblue')
         
 
 # Main Window
@@ -24,11 +29,11 @@ root.geometry('300x200')
 root.config(background='lightblue')
 
 # Title Text Label
-message= ttk.Label(root,
+message= tk.Label(root,
                     text='Temperature Converter',
-                    font=('Hervetica bold', 16),
-                    foreground='Black',
-                    background='lightblue')
+                    font=('Hervetica', 16, 'bold'),
+                    fg='Black',
+                    bg='lightblue')
 message.pack(pady=4)
 
 # Text Label
@@ -50,7 +55,7 @@ button_temperature= ttk.Button(root, text='Convert', command=temperature)
 button_temperature.pack(pady=4)
 
 # Text label result
-text= ttk.Label(root, text='',foreground='Green' ,background='lightblue')
+text= tk.Label(root, text='',foreground='Green' ,background='lightblue')
 text.pack(pady=10)
 
 root.mainloop()
