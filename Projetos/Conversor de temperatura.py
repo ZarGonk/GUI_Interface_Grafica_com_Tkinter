@@ -33,7 +33,7 @@ message= tk.Label(root,
                     text='Temperature Converter',
                     font=('Hervetica', 16, 'bold'),
                     fg='Black',
-                    bg='lightblue')
+                    background='lightblue')
 message.pack(pady=4)
 
 # Text Label
