@@ -10,18 +10,13 @@ def click():
     global count
     count +=1
     message['text'] = f'You Clicked {count} times'
-    if count % 10 == 0:
-        global color
-        color = color_hex_random()
-        root.config(bg=color)
     return message['text'] 
 
 # Criar uma função para decrementar os click
 def decrement():
     global count
     count -= 1
-    message['text'] = f'You Clicked {count} times'
-    
+    message['text'] = f'You Clicked {count} times'  
     return message['text']
 
 # Criar uma função para resetar o contador
@@ -31,7 +26,14 @@ def reset():
     message['text'] = 0
     return message['text']
 
+def start():
+    global count
+    starter = int(count.get())
+    message['text'] = starter
+    return message['text']
+
 # Gerador de cor aleatoria 
+"VOLTAR AQUIIIII COLOCAR ESTA FUNÇÃO"
 def color_hex_random():
     return '#{:06x}'.format(randint(0, 0xFFFFFF))
 
@@ -39,7 +41,6 @@ def color_hex_random():
 root = tk.Tk()
 root.title('Button Click')
 root.config(background='lightblue')
-root.geometry('280x150')
 
 #Crial um label de instrução
 instruction = tk.Label(
@@ -50,10 +51,33 @@ instruction = tk.Label(
 )
 instruction.pack(pady=10)
 
+# Alinhar Entry
+frame_entry = tk.Frame(root, bg='Lightblue')
+frame_entry.pack(pady=10)
+
+value_start = ttk.Entry(frame_entry, width=5)
+value_start.focus()
+value_start.pack(side='right')
+
+# Texto Label Instrução para entrada do contador
+text_entry = tk.Label(
+    frame_entry, 
+    text='Valor Inicial: ',
+    font=('Arial', 10, 'bold'),
+    bg='lightblue'
+)
+text_entry.pack(side='left', padx=5)
+
+button_start = ttk.Button(frame_entry, text='Start count', command=start)
+button_start.pack(padx= 15)
+
+
+
+
+
 # Alinhar os bottons
 frame = tk.Frame(root, bg='lightblue')
 frame.pack(pady=15)
-
 
 # Criar um Button para clicar e contar a quantia de click
 button_click = ttk.Button(
