@@ -1,13 +1,3 @@
-count = 0
-def contador():
-    global count
-    count += 1
-    return count
-
-
-contador()
-contador()
-contador()
-contador()
-contador()
-print(contador())
+for i in range(100):
+    if i % 10== 0:
+        print('oi', i)
