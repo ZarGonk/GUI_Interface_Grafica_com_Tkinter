@@ -1,13 +1,27 @@
 # Importar as bibliotecas 
 import tkinter as tk
 from tkinter import ttk
+from random import randint
 
 # Criar uma função para contar os clicks
+color = ''
 count = 0
 def click():
     global count
     count +=1
-    message['text'] = count
+    message['text'] = f'You Clicked {count} times'
+    if count % 10 == 0:
+        global color
+        color = color_hex_random()
+        root.config(bg=color)
+    return message['text'] 
+
+# Criar uma função para decrementar os click
+def decrement():
+    global count
+    count -= 1
+    message['text'] = f'You Clicked {count} times'
+    
     return message['text']
 
 # Criar uma função para resetar o contador
@@ -17,6 +31,9 @@ def reset():
     message['text'] = 0
     return message['text']
 
+# Gerador de cor aleatoria 
+def color_hex_random():
+    return '#{:06x}'.format(randint(0, 0xFFFFFF))
 
 # Cria uma janela
 root = tk.Tk()
@@ -45,6 +62,14 @@ button_click = ttk.Button(
     command=click)
 button_click.pack(side= 'left', padx=5)
 
+button_decrement = ttk.Button(
+    frame,
+    text='Decrement',
+    command=decrement
+)
+button_decrement.pack(side='left', padx=5)
+
+
 # Criar um Button para resetar a contagem
 button_reset = ttk.Button(
     frame,
@@ -62,7 +87,5 @@ message = tk.Label(
     bg='lightblue'
 )
 message.pack()
-
-# Inicia no 0
 
 root.mainloop()
