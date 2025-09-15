@@ -1,17 +1,22 @@
 import tkinter as tk
 
+# Create the main window
 root = tk.Tk()
-root.title("Exemplo 1 - IntVar Básico")
+root.title("Example 1 - Basic IntVar")
 
-numero = tk.IntVar()   # cria a caixinha de número
+# Create an IntVar (special Tkinter variable for integers)
+number = tk.IntVar()
 
-# define um valor inicial
-numero.set(10)
+# Set an initial value
+number.set(10)
 
-def mostrar():
-    print("O valor atual é:", numero.get())
+# Function to display the current value
+def show():
+    print("Current value is:", number.get())
 
-btn = tk.Button(root, text="Mostrar valor", command=mostrar)
+# Button that calls the show() function
+btn = tk.Button(root, text="Show Value", command=show)
 btn.pack(pady=10)
 
+# Start the Tkinter event loop
 root.mainloop()

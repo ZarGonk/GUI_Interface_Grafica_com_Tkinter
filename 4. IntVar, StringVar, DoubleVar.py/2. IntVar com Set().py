@@ -1,23 +1,31 @@
 import tkinter as tk
 
+# Create the main window
 root = tk.Tk()
-root.title("Exemplo 2 - Alterando valores")
+root.title("Example 2 - Changing Values")
 
-contador = tk.IntVar(value=0)  # começa em 0
+# Create an IntVar counter starting at 0
+counter = tk.IntVar(value=0)
 
-def aumentar():
-    contador.set(contador.get() + 1)
+# Function to increase the counter
+def increase():
+    counter.set(counter.get() + 1)
 
-def diminuir():
-    contador.set(contador.get() - 1)
+# Function to decrease the counter
+def decrease():
+    counter.set(counter.get() - 1)
 
-label = tk.Label(root, textvariable=contador, font=("Arial", 20))
+# Label linked to the IntVar to display the current counter value
+label = tk.Label(root, textvariable=counter, font=("Arial", 20))
 label.pack(pady=10)
 
-btn1 = tk.Button(root, text="Aumentar", command=aumentar)
+# Button to increase the counter
+btn1 = tk.Button(root, text="Increase", command=increase)
 btn1.pack(side="left", padx=10)
 
-btn2 = tk.Button(root, text="Diminuir", command=diminuir)
+# Button to decrease the counter
+btn2 = tk.Button(root, text="Decrease", command=decrease)
 btn2.pack(side="right", padx=10)
 
+# Start the Tkinter event loop
 root.mainloop()
