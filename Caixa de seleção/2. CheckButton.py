@@ -1,43 +1,29 @@
 import tkinter as tk
 from tkinter import ttk
 
-# Create main window
+# Main Window
 root = tk.Tk()
-root.title("Example - Multiple Checkbuttons")
+root.title('CheckButton 2')
+root.geometry('300x200')
+root.resizable(True, True)  # Allow window resizing
 
-# Variables for each option
-option1 = tk.BooleanVar()
-option2 = tk.BooleanVar()
-option3 = tk.BooleanVar()
+# Variable to store the state of the checkbutton
+check_var = tk.StringVar(value="Disable")  # initial state
 
-# Function to display selected choices
-def show_choices():
-    choices = []
-    if option1.get():
-        choices.append("Python")
-    if option2.get():
-        choices.append("C++")
-    if option3.get():
-        choices.append("SQL")
-    
-    if choices:
-        label.config(text="You chose: " + ", ".join(choices))
-    else:
-        label.config(text="No option selected")
+# Function called when checkbox is clicked
+def toggle():
+    print("Current state:", check_var.get())
 
-# Create multiple checkbuttons
-check1 = ttk.Checkbutton(root, text="Python", variable=option1, command=show_choices)
-check1.pack(anchor="w", padx=10, pady=2)
-
-check2 = ttk.Checkbutton(root, text="C++", variable=option2, command=show_choices)
-check2.pack(anchor="w", padx=10, pady=2)
-
-check3 = ttk.Checkbutton(root, text="SQL", variable=option3, command=show_choices)
-check3.pack(anchor="w", padx=10, pady=2)
-
-# Label to display the result
-label = ttk.Label(root, text="Choose your favorite programming languages")
-label.pack(pady=10)
+# Create CheckButton
+checkbox = ttk.Checkbutton(
+    root,
+    text='Option to check',
+    variable=check_var,       # connect to variable
+    command=toggle,           # function called on click
+    onvalue='Active',         # value when checked
+    offvalue='Disable'        # value when unchecked
+)
+checkbox.grid(pady=20)
 
 # Start the Tkinter event loop
 root.mainloop()
