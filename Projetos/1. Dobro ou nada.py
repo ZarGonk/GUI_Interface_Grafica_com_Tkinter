@@ -1,67 +1,76 @@
+'''Criar um campo para digitar um número e um botão que mostre o dobro.'''
+
 import tkinter as tk
 from tkinter import ttk
 
-def virgula_by_point(string):
+# Function to replace commas with dots and convert to float
+def comma_to_point(string):
     number = string.replace(',', '.')
     return float(number)
 
+# Function to calculate the double
 def double():
     try:
         number = value.get()
         if not number.strip():
-            text['text'] = 'Enter any number'
+            text['text'] = 'Enter a number'
             text['foreground'] = 'Red'
             return
         
-        number = virgula_by_point(number)
+        number = comma_to_point(number)
         result = number * 2
         
-        text['text'] = f'Double the {number} is the {result}' 
+        text['text'] = f'Double of {number} is {result}' 
         text['foreground'] = 'Green'
 
     except ValueError:
-        text['text'] = f'Valor Invalido! Somento Numeros São Permitidos'
+        text['text'] = 'Invalid value! Only numbers are allowed'
         text['foreground'] = 'Red'
 
-# Main Window
+# --- Main Window ---
 root = tk.Tk()
 root.title('Doubling Value')
 root.geometry('300x200')
 root.resizable(False, False)
 
-# Title text label
+# Title label
 message = ttk.Label(
     root, 
     text='Doubling Numbers', 
     font=('Century', 15), 
-    foreground='Red')
+    foreground='Red'
+)
 message.pack(pady=4)
 
-# Text Label
+# Instruction label
 text_number = ttk.Label(
     root,
-    text='Enter a Number:',
+    text='Enter a number:',
     font=('Century', 11),
-    foreground='Black')
+    foreground='Black'
+)
 text_number.pack(pady=4)
 
-# Entry Value
+# Entry field
 value = ttk.Entry(
     root,
-    font=('arial',11),
-    foreground='Blue')
+    font=('Arial', 11),
+    foreground='Blue'
+)
 value.focus()
 value.pack(pady=4)
 
-# Bottun Number
+# Button to calculate double
 button_number = ttk.Button(
     root,
     text='Double the number',
-    command=double)
+    command=double
+)
 button_number.pack()
 
-# End Result
+# Label to show result
 text = ttk.Label(root, text='')
 text.pack(pady=6)
 
+# Start the Tkinter event loop
 root.mainloop()
