@@ -3,7 +3,7 @@ from tkinter import ttk
 
 # Main Window
 root = tk.Tk()
-root.title('CheckButton 1')
+root.title('')
 root.geometry('300x200')
 root.resizable(True, True) 
 
