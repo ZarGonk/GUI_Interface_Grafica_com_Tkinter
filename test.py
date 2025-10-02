@@ -1,16 +1,28 @@
-def show_days(op=0):
-    days = []
-    if op == 1: days.append('Sunday')
-    if op == 2: days.append('Monday')
-    if op == 3: days.append('Tuesday')
-    if op == 4: days.append('Wednesday')
-    if op == 5: days.append('Thursday')
-    if op == 6: days.append('Saturday')
+import tkinter as tk
+from tkinter import ttk
 
-    return days
+root = tk.Tk()
 
-test = show_days(3)
-test = show_days(4)
+# Criar um estilo personalizado
+style = ttk.Style()
+style.theme_use("clam")  # "clam" permite mais personalização
 
-print(test)
+# Configurar o estilo com cores específicas
+style.configure("Custom.TButton",
+                background="lightblue",
+                foreground="black",
+                borderwidth=1,
+                focusthickness=3,
+                focuscolor='none')
 
+style.map("Custom.TButton",
+          background=[("active", "blue"), ("pressed", "green")],
+          foreground=[("active", "white"), ("pressed", "black")])
+
+
+# Aplicar o estilo ao botão
+btn = ttk.Button(root, text="Clique aqui", style="Custom.TButton")
+btn.pack(padx=20, pady=20)
+
+
+root.mainloop()
