@@ -1,94 +1,95 @@
 import tkinter as tk
 from tkinter import ttk
 
-def registration():
-    valid_fields = 0
-
-    if name.get().strip():
-        valid_fields += 1
-
-    if email.get().strip() and '@' in email.get():
-        valid_fields += 1
-
-    if select_radio.get() in ['M', 'F', 'O']:
-        valid_fields += 1
-
-    if valid_fields == 3:
-        label_confirmation['text'] = 'Registration confirmed!'
-        name.set('')
-        email.set('')
-        select_radio.set('')
-        check_var.set(False)
-    else:
-        label_confirmation['text'] = 'Please fill in all required fields *'
-
+def register():
+    """Validate fields and display confirmation or error messages."""
     
+    # Check if the name field is empty
+    if not name.get().strip():
+        label_confirmation.config(text='Name is required!', foreground='red')
+        return
 
-# Main Window
+    # Validate email (must contain '@' and '.')
+    if not email.get().strip() or '@' not in email.get() or '.' not in email.get():
+        label_confirmation.config(text='Invalid or missing email!', foreground='red')
+        return
+    
+    # Validate gender selection
+    if selected_gender.get() not in ['M', 'F', 'O']:
+        label_confirmation.config(text='Please select your gender!', foreground='red')
+        return
+
+    # If all validations pass, confirm registration
+    label_confirmation.config(text='Registration confirmed!', foreground='green')
+    
+    # Clear all fields
+    name.set('')
+    email.set('')
+    selected_gender.set('')
+    newsletter_var.set(False)
+
+
+# --- Main Window ---
 root = tk.Tk()
-root.title('')
-#root.geometry('300x200')
-root.resizable(True, True) 
+root.title('Registration App')
+root.geometry('280x235')
+root.resizable(True, True)
 
-title = ttk.Label(root, text='App de cadastro', font=('Arial', 16, 'bold'))
-title.grid(row=0, column=0, padx=5, pady=2)
+# App title label
+title = ttk.Label(root, text='Registration App', font=('Arial', 16, 'bold'))
+title.grid(row=0, column=0, padx=10, pady=10)
 
-# Variable name, E-mail
-name  = tk.StringVar()
+# --- Variables ---
+name = tk.StringVar()
 email = tk.StringVar()
-select_radio = tk.StringVar()
-check_var = tk.BooleanVar(value=False)
+selected_gender = tk.StringVar()
+newsletter_var = tk.BooleanVar(value=False)
 
+# --- Frame for Name and Email fields ---
+frame_user = ttk.Frame(root)
+frame_user.grid(row=1, column=0, sticky='W', padx=10, pady=5)
 
-# Frame the Name and Email
-frame_0 = ttk.Frame(root)
-frame_0.grid(row=1, column=0, sticky='W')
+# --- Name Field ---
+label_name = ttk.Label(frame_user, text='* Name:')
+label_name.grid(row=1, column=0, padx=5, pady=2, sticky='W')
 
-# Name Field
-label_0 = ttk.Label(frame_0, text='* Name: ')
-label_0.grid(row=1, column=0, padx=5, pady=2, sticky='W')
+entry_name = ttk.Entry(frame_user, textvariable=name, width=30)
+entry_name.grid(row=1, column=1, pady=2, sticky='W')
 
-entry_0 = ttk.Entry(frame_0, textvariable=name)
-entry_0.grid(row=1, column=1, pady=2 , sticky='W')
+# --- Email Field ---
+label_email = ttk.Label(frame_user, text='* Email:')
+label_email.grid(row=2, column=0, padx=5, pady=2, sticky='W')
 
-# E-mail Field 
-label_1 = ttk.Label(frame_0, text='* E-mail: ')
-label_1.grid(row=2, column=0, padx=5, pady=2, sticky='W')
+entry_email = ttk.Entry(frame_user, textvariable=email, width=30)
+entry_email.grid(row=2, column=1, pady=2, sticky='W')
 
-entry_1 = ttk.Entry(frame_0, textvariable=email)
-entry_1.grid(row=2, column=1, pady=2, sticky='W')
+# --- Gender Selection ---
+label_gender = ttk.Label(root, text='* What is your gender:')
+label_gender.grid(row=2, column=0, padx=15, pady=5, sticky='W')
 
-# Radio sex
-label_2 = ttk.Label(root, text='* What is your gender: ')
-label_2.grid(row=2, column=0, padx=5, pady=2, sticky='W')
+# Frame to organize the gender radio buttons
+frame_gender = ttk.Frame(root)
+frame_gender.grid(row=3, column=0, sticky='W', padx=10, pady=5)
 
-# Sexual orientation
-genres = (
-    ('Male', 'M'),
-    ('Female', 'F'),
-    ('Others', 'O')
-)
+# Define gender options
+genders = (('Male', 'M'), ('Female', 'F'), ('Other', 'O'))
 
-# Frame to hold the radiobuttons
-frame_1 = ttk.Frame(root)
-frame_1.grid(row=3, column=0, sticky='W')
+# Create a radio button for each gender option
+for index, gender in enumerate(genders):
+    radio = ttk.Radiobutton(frame_gender, text=gender[0], value=gender[1], variable=selected_gender)
+    radio.grid(row=0, column=index, padx=5, sticky='W')
 
-for index, gender in enumerate(genres):
-    radio = ttk.Radiobutton(frame_1, text=gender[0], value=gender[1], variable=select_radio)
-    radio.grid(row=0, column= index, padx=5, sticky='W')
+# --- Newsletter Checkbox ---
+check_newsletter = ttk.Checkbutton(root, text='I wish to receive emails.', variable=newsletter_var)
+check_newsletter.grid(row=4, column=0, padx=15, pady=5, sticky='W')
 
-# Check
-check = ttk.Checkbutton(root, text='I wish to receive an email.', variable=check_var)
-check.grid(row=4, column=0, padx=5,pady=10, sticky='W')
+# --- Confirmation Button ---
+button_confirm = ttk.Button(root, text='Confirm', command=register)
+button_confirm.grid(row=5, column=0)
 
-
-# End
-
-button = ttk.Button(root, text='confirm', command=registration)
-button.grid(row=5, column=0)
-
+# --- Label for displaying messages (confirmation or error) ---
 label_confirmation = ttk.Label(root, text='')
 label_confirmation.grid(row=6, column=0)
 
-# Start the Tkinter event loop
+# --- Start Tkinter main loop ---
 root.mainloop()

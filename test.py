@@ -10,4 +10,4 @@ def show_count(start=0, end=0, move=0):
         print('Valor Invalido')
     
 
-show_count('bom dia', 10+1, 2)
+show_count(0, 11, 2)
