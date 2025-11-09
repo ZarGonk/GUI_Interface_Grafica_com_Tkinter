@@ -92,4 +92,4 @@ label_confirmation = ttk.Label(root, text='')
 label_confirmation.grid(row=6, column=0)
 
 # --- Start Tkinter main loop ---
-root.mainloop()
+root.mainloop() 
