@@ -30,6 +30,11 @@ class ConverterFrame(ttk.Frame):
         self.convert_button['command'] = self.convert
         self.convert_button.grid(column=2, row=0, sticky=tk.W, **options)
 
+
+        self.convert_button = ttk.Button(self, text='convert', command=self.convert)
+        self.convert_button.grid(column=2, row=0, sticky=tk.W, **options)
+
+
         # result label
         self.result_label = ttk.Label(self)
         self.result_label.grid(row=1, columnspan=3, **options)
