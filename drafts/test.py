@@ -1,69 +1,34 @@
 import tkinter as tk
 from tkinter import ttk
-from tkinter.messagebox import showerror
 
+# Creating tkinter window
+window = tk.Tk()
+window.geometry('350x250')
+# Label
+ttk.Label(window, text = "Select the Month :", 
+        font = ("Times New Roman", 10)).grid(column = 0, 
+        row = 15, padx = 10, pady = 25)
 
-class TemperatureConverter:
-    @staticmethod
-    def fahrenheit_to_celsius(f):
-        return (f - 32) * 5 / 9
+n = tk.StringVar()
+monthchoosen = ttk.Combobox(window, width = 27, 
+                            textvariable = n)
 
+# Adding combobox drop down list
+monthchoosen['values'] = (' January', 
+                          ' February',
+                          ' March',
+                          ' April',
+                          ' May',
+                          ' June', 
+                          ' July', 
+                          ' August', 
+                          ' September', 
+                          ' October', 
+                          ' November', 
+                          ' December')
 
-class ConverterFrame(ttk.Frame):
-    def __init__(self, container):
-        super().__init__(container)
-        # field options
-        options = {'padx': 5, 'pady': 5}
+monthchoosen.grid(column = 1, row = 15)
 
-        # temperature label
-        self.temperature_label = ttk.Label(self, text='Fahrenheit')
-        self.temperature_label.grid(column=0, row=0, sticky=tk.W, **options)
-
-        # temperature entry
-        self.temperature = tk.StringVar()
-        self.temperature_entry = ttk.Entry(self, textvariable=self.temperature)
-        self.temperature_entry.grid(column=1, row=0, **options)
-        self.temperature_entry.focus()
-
-        # convert button
-        self.convert_button = ttk.Button(self, text='Convert')
-        self.convert_button['command'] = self.convert
-        self.convert_button.grid(column=2, row=0, sticky=tk.W, **options)
-
-
-        self.convert_button = ttk.Button(self, text='convert', command=self.convert)
-        self.convert_button.grid(column=2, row=0, sticky=tk.W, **options)
-
-
-        # result label
-        self.result_label = ttk.Label(self)
-        self.result_label.grid(row=1, columnspan=3, **options)
-
-        # add padding to the frame and show it
-        self.grid(padx=10, pady=10, sticky=tk.NSEW)
-
-    def convert(self):
-        """  Handle button click event
-        """
-        try:
-            f = float(self.temperature.get())
-            c = TemperatureConverter.fahrenheit_to_celsius(f)
-            result = f'{f} Fahrenheit = {c:.2f} Celsius'
-            self.result_label.config(text=result)
-        except ValueError as error:
-            showerror(title='Error', message=error)
-
-
-class App(tk.Tk):
-    def __init__(self):
-        super().__init__()
-
-        self.title('Temperature Converter')
-        self.geometry('300x70')
-        self.resizable(False, False)
-
-
-if __name__ == "__main__":
-    app = App()
-    ConverterFrame(app)
-    app.mainloop()
+# Shows february as a default value
+monthchoosen.current(1) 
+window.mainloop()
