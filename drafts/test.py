@@ -1,34 +1,25 @@
 import tkinter as tk
-from tkinter import ttk
 
-# Creating tkinter window
-window = tk.Tk()
-window.geometry('350x250')
-# Label
-ttk.Label(window, text = "Select the Month :", 
-        font = ("Times New Roman", 10)).grid(column = 0, 
-        row = 15, padx = 10, pady = 25)
+class App(tk.Tk):
+    def __init__(self):
+        super().__init__()
 
-n = tk.StringVar()
-monthchoosen = ttk.Combobox(window, width = 27, 
-                            textvariable = n)
+        self.title('Listbox Example')
+        self.geometry('200x250')
+        self.resizable(True, True)
+        self.configure(bg='lightblue')
+        
+        self.label = tk.Label(self, text='Select a programming language:', bg='lightblue')
+        self.label.grid(row=0, column=0, padx=10, pady=10)
 
-# Adding combobox drop down list
-monthchoosen['values'] = (' January', 
-                          ' February',
-                          ' March',
-                          ' April',
-                          ' May',
-                          ' June', 
-                          ' July', 
-                          ' August', 
-                          ' September', 
-                          ' October', 
-                          ' November', 
-                          ' December')
+        self.languages = ('Python', 'Java', 'C++', 'JavaScript', 'Ruby', 'Go', 'Swift')
 
-monthchoosen.grid(column = 1, row = 15)
+        self.list_variable = tk.Variable(value=self.languages)
 
-# Shows february as a default value
-monthchoosen.current(1) 
-window.mainloop()
+        self.listbox = tk.Listbox(self, cnf={}, listvariable=self.list_variable, height=7, selectmode=tk.MULTIPLE)
+        self.listbox.grid(row=1, column=0)
+
+
+if __name__ == "__main__":
+    app = App()
+    app.mainloop()
