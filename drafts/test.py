@@ -1,47 +1,98 @@
 import tkinter as tk
 from tkinter import ttk
-from tkinter.messagebox import showinfo
-from calendar import month_name
-from datetime import datetime
-
-root = tk.Tk()
-
-# config the root window
-root.geometry('300x200')
-root.resizable(False, False)
-root.title('Combobox Widget')
-
-# label
-label = ttk.Label(text="Please select a month:")
-label.pack(fill=tk.X, padx=5, pady=5)
-
-# create a combobox
-selected_month = tk.StringVar()
-month_cb = ttk.Combobox(root, textvariable=selected_month)
-
-# get first 3 letters of every month name
-month_cb['values'] = [month_name[m][0:3] for m in range(1, 13)]
-
-# prevent typing a value
-month_cb['state'] = 'readonly'
-
-# place the widget
-month_cb.pack(fill=tk.X, padx=5, pady=5)
 
 
-# bind the selected value changes
-def month_changed(event):
-    """ handle the month changed event """
-    showinfo(
-        title='Result',
-        message=f'You selected {selected_month.get()}!'
-    )
+class App(tk.Tk):
+    def __init__(self):
+        super().__init__()
+
+        # -------------------- JANELA --------------------
+        self.title("List Fruits - Modern UI")
+        self.geometry("350x350")
+        self.configure(bg="#1e1e1e")  # fundo dark
+
+        # -------------------- ESTILO --------------------
+        style = ttk.Style(self)
+        style.theme_use("clam")
+
+        # Label padrão
+        style.configure("TLabel",
+                        background="#1e1e1e",
+                        foreground="#ffffff",
+                        font=("Segoe UI", 12))
+
+        # Label título
+        style.configure("Title.TLabel",
+                        background="#1e1e1e",
+                        foreground="#00c8ff",
+                        font=("Segoe UI Semibold", 16))
+
+        # Frame estilizado
+        style.configure("Card.TFrame",
+                        background="#2b2b2b",
+                        borderwidth=0,
+                        relief="flat")
+
+        # Listbox estilo dark (Listbox é Tk, não ttk)
+        self.listbox_bg = "#2b2b2b"
+        self.listbox_fg = "#ffffff"
+        self.listbox_select = "#00c8ff"
+
+        # -------------------- TÍTULO --------------------
+        self.title_label = ttk.Label(self,
+                                     text="Selecione suas frutas",
+                                     style="Title.TLabel")
+        self.title_label.pack(pady=15)
+
+        # -------------------- CARD (FRAME) --------------------
+        self.card = ttk.Frame(self, style="Card.TFrame", padding=10)
+        self.card.pack(padx=15, pady=10, fill="both", expand=True)
+
+        # Lista de frutas
+        fruts = [
+            'Abacaxi', 'Banana', 'Caju', 'Damasco', 'Figo',
+            'Goiaba', 'Jabuticaba', 'Kiwi', 'Laranja', 'Manga',
+            'Nectarina', 'Oliva', 'Pera', 'Quivi', 'Romã'
+        ]
+
+        list_fruts = tk.Variable(value=fruts)
+
+        # -------------------- LISTBOX --------------------
+        self.listbox = tk.Listbox(self.card,
+                                  listvariable=list_fruts,
+                                  height=6,
+                                  selectmode="multiple",
+                                  bg=self.listbox_bg,
+                                  fg=self.listbox_fg,
+                                  selectbackground=self.listbox_select,
+                                  selectforeground="#000000",
+                                  highlightthickness=0,
+                                  relief="flat",
+                                  font=("Segoe UI", 11))
+        self.listbox.pack(fill="both", expand=True)
+
+        # Evento de seleção
+        self.listbox.bind("<<ListboxSelect>>", self.handle_selection)
+
+        # -------------------- RESULTADO --------------------
+        self.result_label = ttk.Label(self,
+                                      text="Nenhuma fruta selecionada",
+                                      font=("Segoe UI", 12))
+        self.result_label.pack(pady=10)
+
+    def handle_selection(self, event):
+        selected_indices = self.listbox.curselection()
+        selected_fruts = [self.listbox.get(i) for i in selected_indices]
+
+        texto = (
+            "Nenhuma fruta selecionada"
+            if not selected_fruts
+            else "Selecionadas: " + ", ".join(selected_fruts)
+        )
+
+        self.result_label.config(text=texto)
 
 
-month_cb.bind('<<ComboboxSelected>>', month_changed)
-
-# set the current month
-current_month = datetime.now().strftime('%b')
-month_cb.set(current_month)
-
-root.mainloop()
+if __name__ == "__main__":
+    app = App()
+    app.mainloop()
